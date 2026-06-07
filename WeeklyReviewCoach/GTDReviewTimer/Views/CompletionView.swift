@@ -16,7 +16,7 @@ struct CompletionView: View {
                 Text("Review Complete!")
                     .font(.largeTitle.bold())
 
-                Text("You finished your GTD Weekly Review")
+                Text("You finished your Weekly Review")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)

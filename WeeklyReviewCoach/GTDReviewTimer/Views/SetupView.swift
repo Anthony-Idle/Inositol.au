@@ -83,7 +83,7 @@ struct SetupView: View {
                     .listRowBackground(Color.accentColor)
                 }
             }
-            .navigationTitle("GTD Weekly Review")
+            .navigationTitle("Weekly Review Coach")
             .onAppear { refreshAuthStatus() }
             .alert("Notifications Disabled", isPresented: $showDeniedAlert) {
                 Button("Open Settings") {

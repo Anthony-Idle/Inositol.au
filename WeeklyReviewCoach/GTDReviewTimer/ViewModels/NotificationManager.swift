@@ -20,7 +20,7 @@ class NotificationManager {
         components.minute = minute
 
         let content = UNMutableNotificationContent()
-        content.title = "GTD Weekly Review"
+        content.title = "Weekly Review Coach"
         content.body = "Time to get clear, current, and creative. Your weekly review is ready."
         content.sound = .default
 

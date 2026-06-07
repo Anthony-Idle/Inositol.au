@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA000001000000000000001B /* GTDReviewTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000001A /* GTDReviewTimerApp.swift */; };
+		AA000001000000000000001B /* WeeklyReviewCoachApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000001A /* WeeklyReviewCoachApp.swift */; };
 		AA000001000000000000002B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000002A /* ContentView.swift */; };
 		AA000001000000000000003B /* ReviewStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000003A /* ReviewStep.swift */; };
 		AA000001000000000000004B /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000004A /* ReviewViewModel.swift */; };
@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AA000001000000000000001A /* GTDReviewTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTDReviewTimerApp.swift; sourceTree = "<group>"; };
+		AA000001000000000000001A /* WeeklyReviewCoachApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReviewCoachApp.swift; sourceTree = "<group>"; };
 		AA000001000000000000002A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AA000001000000000000003A /* ReviewStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStep.swift; sourceTree = "<group>"; };
 		AA000001000000000000004A /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
@@ -27,7 +27,7 @@
 		AA000001000000000000006A /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		AA000001000000000000007A /* CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionView.swift; sourceTree = "<group>"; };
 		AA000001000000000000008A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AA00000100000000000000F0 /* GTDReviewTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTDReviewTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA00000100000000000000F0 /* WeeklyReviewCoach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeeklyReviewCoach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA000001000000000000009A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -35,7 +35,7 @@
 		AA00000100000000000000E0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA00000100000000000000F0 /* GTDReviewTimer.app */,
+				AA00000100000000000000F0 /* WeeklyReviewCoach.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,7 +70,7 @@
 		AA00000100000000000000A0 /* GTDReviewTimer */ = {
 			isa = PBXGroup;
 			children = (
-				AA000001000000000000001A /* GTDReviewTimerApp.swift */,
+				AA000001000000000000001A /* WeeklyReviewCoachApp.swift */,
 				AA000001000000000000002A /* ContentView.swift */,
 				AA00000100000000000000D0 /* Models */,
 				AA00000100000000000000C0 /* ViewModels */,
@@ -91,9 +91,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA000001000000000000009B /* GTDReviewTimer */ = {
+		AA000001000000000000009B /* WeeklyReviewCoach */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA00000100000000000000CC /* Build configuration list for PBXNativeTarget "GTDReviewTimer" */;
+			buildConfigurationList = AA00000100000000000000CC /* Build configuration list for PBXNativeTarget "WeeklyReviewCoach" */;
 			buildPhases = (
 				AA00000100000000000000BC /* Sources */,
 				AA00000100000000000000BD /* Resources */,
@@ -102,9 +102,9 @@
 			);
 			dependencies = (
 			);
-			name = GTDReviewTimer;
-			productName = GTDReviewTimer;
-			productReference = AA00000100000000000000F0 /* GTDReviewTimer.app */;
+			name = WeeklyReviewCoach;
+			productName = WeeklyReviewCoach;
+			productReference = AA00000100000000000000F0 /* WeeklyReviewCoach.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -135,7 +135,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AA000001000000000000009B /* GTDReviewTimer */,
+				AA000001000000000000009B /* WeeklyReviewCoach */,
 			);
 		};
 /* End PBXProject section */
@@ -156,7 +156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA000001000000000000001B /* GTDReviewTimerApp.swift in Sources */,
+				AA000001000000000000001B /* WeeklyReviewCoachApp.swift in Sources */,
 				AA000001000000000000002B /* ContentView.swift in Sources */,
 				AA000001000000000000003B /* ReviewStep.swift in Sources */,
 				AA000001000000000000004B /* ReviewViewModel.swift in Sources */,
@@ -306,8 +306,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = au.inositol.GTDReviewTimer;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "Weekly Review Coach";
+				PRODUCT_BUNDLE_IDENTIFIER = au.inositol.WeeklyReviewCoach;
+				PRODUCT_NAME = WeeklyReviewCoach;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -333,8 +334,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = au.inositol.GTDReviewTimer;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "Weekly Review Coach";
+				PRODUCT_BUNDLE_IDENTIFIER = au.inositol.WeeklyReviewCoach;
+				PRODUCT_NAME = WeeklyReviewCoach;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -344,7 +346,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA00000100000000000000CC /* Build configuration list for PBXNativeTarget "GTDReviewTimer" */ = {
+		AA00000100000000000000CC /* Build configuration list for PBXNativeTarget "WeeklyReviewCoach" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA00000100000000000000D1 /* Debug */,
@@ -353,7 +355,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA00000100000000000000CD /* Build configuration list for PBXProject "GTDReviewTimer" */ = {
+		AA00000100000000000000CD /* Build configuration list for PBXProject "WeeklyReviewCoach" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA00000100000000000000CE /* Debug */,

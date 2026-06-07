@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct GTDReviewTimerApp: App {
+struct WeeklyReviewCoachApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
