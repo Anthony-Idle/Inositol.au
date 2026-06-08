@@ -44,7 +44,7 @@ struct ReviewView: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 Spacer()
-                Text(vm.formattedElapsed)
+                Label(vm.formattedElapsed, systemImage: "clock")
                     .font(.subheadline.monospacedDigit())
                     .foregroundColor(.secondary)
             }
@@ -132,10 +132,35 @@ struct ReviewView: View {
         .cornerRadius(12)
     }
 
+    // MARK: - Next step preview
+
+    private var upcomingStep: ReviewStep? {
+        let next = vm.currentStepIndex + 1
+        guard next < vm.steps.count else { return nil }
+        return vm.steps[next]
+    }
+
     // MARK: - Bottom controls
 
     private var bottomControls: some View {
         VStack(spacing: 12) {
+            if let next = upcomingStep {
+                HStack {
+                    Text("Next up:")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Text(next.name)
+                        .font(.caption.bold())
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Text("\(next.durationSeconds / 60) min")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+                .padding(.horizontal, 4)
+                Divider()
+            }
+
             HStack(spacing: 16) {
                 // Previous
                 Button(action: vm.previousStep) {
