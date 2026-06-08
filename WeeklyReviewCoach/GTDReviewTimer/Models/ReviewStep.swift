@@ -47,9 +47,10 @@ struct ReviewStep: Identifiable {
         ReviewStep(
             name: "Review Action Lists",
             instructions: [
-                "Go through every Next Action on all your context lists",
+                "Context lists are your Next Actions organised by where or how you work — e.g. @Computer, @Phone, @Errands, @Home, @Email",
+                "Go through every Next Action on each of your context lists",
                 "Mark off completed items",
-                "Ensure every remaining item is still current and correctly placed",
+                "Ensure every remaining item is still current and in the right list",
                 "Delete or move items that are no longer relevant"
             ],
             durationSeconds: 600
