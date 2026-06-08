@@ -307,6 +307,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				INFOPLIST_KEY_CFBundleDisplayName = "Weekly Review Pro";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.anthonyidle.WeeklyReviewCoach;
 				PRODUCT_NAME = WeeklyReviewCoach;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -335,6 +336,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				INFOPLIST_KEY_CFBundleDisplayName = "Weekly Review Pro";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.anthonyidle.WeeklyReviewCoach;
 				PRODUCT_NAME = WeeklyReviewCoach;
 				SWIFT_EMIT_LOC_STRINGS = YES;
