@@ -6,23 +6,11 @@ struct HomeView: View {
 
     var body: some View {
         NavigationView {
-            Group {
-                if vm.pastRecords.isEmpty {
-                    emptyState
-                } else {
-                    recordsList
-                }
+            List {
+                areasSection
+                reviewsSection
             }
             .navigationTitle("Quarterly Review")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showingAreasConfig = true
-                    } label: {
-                        Image(systemName: "square.grid.3x3")
-                    }
-                }
-            }
         }
         .navigationViewStyle(.stack)
         .safeAreaInset(edge: .bottom) {
@@ -33,63 +21,88 @@ struct HomeView: View {
         }
     }
 
-    // MARK: - Empty state
+    // MARK: - Areas of focus section
 
-    private var emptyState: some View {
-        VStack(spacing: 24) {
-            Spacer()
-            Image(systemName: "calendar.badge.clock")
-                .font(.system(size: 72))
-                .foregroundColor(.accentColor)
-            VStack(spacing: 8) {
-                Text("No Reviews Yet")
-                    .font(.title2.bold())
-                Text("Start your first quarterly review.\nTap the grid icon above to name your 8 areas first.")
-                    .font(.body)
+    private var areasSection: some View {
+        Section {
+            VStack(alignment: .leading, spacing: 10) {
+                let columns = vm.areaNames.filter { !$0.isEmpty }
+                Text(columns.joined(separator: "  ·  "))
+                    .font(.subheadline)
                     .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 32)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                Button {
+                    showingAreasConfig = true
+                } label: {
+                    HStack {
+                        Image(systemName: "pencil")
+                        Text("Edit Areas")
+                    }
+                    .font(.subheadline.bold())
+                    .foregroundColor(.accentColor)
+                }
+                .buttonStyle(.plain)
             }
-            Spacer()
-            Spacer()
+            .padding(.vertical, 4)
+        } header: {
+            Label("Areas of Focus", systemImage: "square.grid.3x3")
+        } footer: {
+            Text("Set up your 8 areas before starting your first review.")
         }
     }
 
-    // MARK: - Records list
+    // MARK: - Past reviews section
 
-    private var recordsList: some View {
-        List {
-            ForEach(vm.pastRecords.reversed()) { record in
-                NavigationLink(destination: ReviewDetailView(record: record)) {
-                    recordRow(record)
+    private var reviewsSection: some View {
+        Section {
+            if vm.pastRecords.isEmpty {
+                HStack {
+                    Spacer()
+                    VStack(spacing: 6) {
+                        Image(systemName: "clock.arrow.circlepath")
+                            .font(.system(size: 32))
+                            .foregroundColor(.secondary)
+                        Text("No reviews yet")
+                            .font(.subheadline.bold())
+                        Text("Completed reviews will appear here.")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+                    .padding(.vertical, 16)
+                    Spacer()
+                }
+            } else {
+                ForEach(vm.pastRecords.reversed()) { record in
+                    NavigationLink(destination: ReviewDetailView(record: record)) {
+                        recordRow(record)
+                    }
                 }
             }
+        } header: {
+            Label("Past Reviews", systemImage: "calendar.badge.clock")
         }
     }
 
     private func recordRow(_ record: QuarterRecord) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
-            HStack {
+        HStack {
+            VStack(alignment: .leading, spacing: 3) {
                 Text(record.quarterLabel)
                     .font(.headline)
-                Spacer()
-                if record.completedDate != nil {
-                    Text("\(record.averageAchievement)% avg")
-                        .font(.caption.monospacedDigit())
-                        .foregroundColor(.accentColor)
-                }
-            }
-            Text((record.completedDate ?? record.startDate).formatted(date: .abbreviated, time: .omitted))
-                .font(.caption)
-                .foregroundColor(.secondary)
-            if !record.oneThingForSuccess.isEmpty {
-                Text(record.oneThingForSuccess)
+                Text((record.completedDate ?? record.startDate)
+                    .formatted(date: .abbreviated, time: .omitted))
                     .font(.caption)
                     .foregroundColor(.secondary)
-                    .lineLimit(1)
+            }
+            Spacer()
+            if record.completedDate != nil {
+                Text("\(record.averageAchievement)% avg")
+                    .font(.subheadline.monospacedDigit())
+                    .foregroundColor(.accentColor)
             }
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 2)
     }
 
     // MARK: - Start banner
@@ -100,11 +113,8 @@ struct HomeView: View {
             Button(action: vm.startSetup) {
                 HStack {
                     Spacer()
-                    Label(
-                        "Start Quarterly Review",
-                        systemImage: "play.circle.fill"
-                    )
-                    .font(.headline)
+                    Label("Start Quarterly Review", systemImage: "play.circle.fill")
+                        .font(.headline)
                     Spacer()
                 }
                 .padding()
