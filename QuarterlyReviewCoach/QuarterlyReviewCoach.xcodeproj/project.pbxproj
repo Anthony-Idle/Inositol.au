@@ -1,0 +1,385 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BB000001000000000000001B /* QuarterlyReviewCoachApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000001A /* QuarterlyReviewCoachApp.swift */; };
+		BB000001000000000000002B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000002A /* ContentView.swift */; };
+		BB000001000000000000003B /* ReviewStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000003A /* ReviewStep.swift */; };
+		BB000001000000000000004B /* QuarterRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000004A /* QuarterRecord.swift */; };
+		BB000001000000000000005B /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000005A /* ReviewViewModel.swift */; };
+		BB000001000000000000006B /* QuarterlyNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000006A /* QuarterlyNotificationManager.swift */; };
+		BB000001000000000000007B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000007A /* HomeView.swift */; };
+		BB000001000000000000008B /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000008A /* SetupView.swift */; };
+		BB000001000000000000009B /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000009A /* ReviewView.swift */; };
+		BB00000100000000000000AB /* DebriefView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00000100000000000000AA /* DebriefView.swift */; };
+		BB00000100000000000000BB /* CompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00000100000000000000BA /* CompletionView.swift */; };
+		BB00000100000000000000CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB00000100000000000000CA /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BB000001000000000000001A /* QuarterlyReviewCoachApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterlyReviewCoachApp.swift; sourceTree = "<group>"; };
+		BB000001000000000000002A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BB000001000000000000003A /* ReviewStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStep.swift; sourceTree = "<group>"; };
+		BB000001000000000000004A /* QuarterRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterRecord.swift; sourceTree = "<group>"; };
+		BB000001000000000000005A /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
+		BB000001000000000000006A /* QuarterlyNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterlyNotificationManager.swift; sourceTree = "<group>"; };
+		BB000001000000000000007A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BB000001000000000000008A /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
+		BB000001000000000000009A /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		BB00000100000000000000AA /* DebriefView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebriefView.swift; sourceTree = "<group>"; };
+		BB00000100000000000000BA /* CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionView.swift; sourceTree = "<group>"; };
+		BB00000100000000000000CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BB00000100000000000000F0 /* QuarterlyReviewCoach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuarterlyReviewCoach.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		BB00000100000000000000I0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BB00000100000000000000F0 /* QuarterlyReviewCoach.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB00000100000000000000D0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BB000001000000000000003A /* ReviewStep.swift */,
+				BB000001000000000000004A /* QuarterRecord.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BB00000100000000000000E0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BB000001000000000000005A /* ReviewViewModel.swift */,
+				BB000001000000000000006A /* QuarterlyNotificationManager.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BB00000100000000000000G0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BB000001000000000000007A /* HomeView.swift */,
+				BB000001000000000000008A /* SetupView.swift */,
+				BB000001000000000000009A /* ReviewView.swift */,
+				BB00000100000000000000AA /* DebriefView.swift */,
+				BB00000100000000000000BA /* CompletionView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BB00000100000000000000H0 /* QuarterlyReviewCoach */ = {
+			isa = PBXGroup;
+			children = (
+				BB000001000000000000001A /* QuarterlyReviewCoachApp.swift */,
+				BB000001000000000000002A /* ContentView.swift */,
+				BB00000100000000000000D0 /* Models */,
+				BB00000100000000000000E0 /* ViewModels */,
+				BB00000100000000000000G0 /* Views */,
+				BB00000100000000000000CA /* Assets.xcassets */,
+			);
+			path = QuarterlyReviewCoach;
+			sourceTree = "<group>";
+		};
+		BB00000100000000000000M0 /* MainGroup */ = {
+			isa = PBXGroup;
+			children = (
+				BB00000100000000000000H0 /* QuarterlyReviewCoach */,
+				BB00000100000000000000I0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BB00000100000000000000J0 /* QuarterlyReviewCoach */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB00000100000000000000L4 /* Build configuration list for PBXNativeTarget "QuarterlyReviewCoach" */;
+			buildPhases = (
+				BB00000100000000000000K0 /* Sources */,
+				BB00000100000000000000K1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuarterlyReviewCoach;
+			productName = QuarterlyReviewCoach;
+			productReference = BB00000100000000000000F0 /* QuarterlyReviewCoach.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BB00000100000000000000J1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					BB00000100000000000000J0 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = BB00000100000000000000L5 /* Build configuration list for PBXProject "QuarterlyReviewCoach" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BB00000100000000000000M0 /* MainGroup */;
+			productRefGroup = BB00000100000000000000I0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BB00000100000000000000J0 /* QuarterlyReviewCoach */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BB00000100000000000000K1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB00000100000000000000CB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BB00000100000000000000K0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB000001000000000000001B /* QuarterlyReviewCoachApp.swift in Sources */,
+				BB000001000000000000002B /* ContentView.swift in Sources */,
+				BB000001000000000000003B /* ReviewStep.swift in Sources */,
+				BB000001000000000000004B /* QuarterRecord.swift in Sources */,
+				BB000001000000000000005B /* ReviewViewModel.swift in Sources */,
+				BB000001000000000000006B /* QuarterlyNotificationManager.swift in Sources */,
+				BB000001000000000000007B /* HomeView.swift in Sources */,
+				BB000001000000000000008B /* SetupView.swift in Sources */,
+				BB000001000000000000009B /* ReviewView.swift in Sources */,
+				BB00000100000000000000AB /* DebriefView.swift in Sources */,
+				BB00000100000000000000BB /* CompletionView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BB00000100000000000000L0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BB00000100000000000000L1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BB00000100000000000000L2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "Quarterly Review Pro";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anthonyidle.QuarterlyReviewCoach;
+				PRODUCT_NAME = QuarterlyReviewCoach;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BB00000100000000000000L3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "Quarterly Review Pro";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anthonyidle.QuarterlyReviewCoach;
+				PRODUCT_NAME = QuarterlyReviewCoach;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BB00000100000000000000L4 /* Build configuration list for PBXNativeTarget "QuarterlyReviewCoach" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB00000100000000000000L2 /* Debug */,
+				BB00000100000000000000L3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB00000100000000000000L5 /* Build configuration list for PBXProject "QuarterlyReviewCoach" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB00000100000000000000L0 /* Debug */,
+				BB00000100000000000000L1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = BB00000100000000000000J1 /* Project object */;
+}
