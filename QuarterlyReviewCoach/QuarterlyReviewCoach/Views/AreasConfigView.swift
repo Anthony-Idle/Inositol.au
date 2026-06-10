@@ -18,6 +18,9 @@ struct AreasConfigView: View {
                                 get: { vm.areaNames[i] },
                                 set: { vm.areaNames[i] = $0 }
                             ))
+                            Image(systemName: "pencil")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
                         }
                     }
                 } header: {

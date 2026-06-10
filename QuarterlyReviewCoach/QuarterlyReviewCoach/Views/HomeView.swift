@@ -60,7 +60,9 @@ struct HomeView: View {
     private var recordsList: some View {
         List {
             ForEach(vm.pastRecords.reversed()) { record in
-                recordRow(record)
+                NavigationLink(destination: ReviewDetailView(record: record)) {
+                    recordRow(record)
+                }
             }
         }
     }
