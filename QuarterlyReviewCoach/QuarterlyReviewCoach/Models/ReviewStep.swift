@@ -52,7 +52,7 @@ struct ReviewStep: Identifiable, Codable {
         steps.append(ReviewStep(
             name: "Life Goal",
             instructions: [
-                "Read your life goal at the centre of your 9x9",
+                "Read your life goal for the next 3–5 years",
                 "Is it still the right goal? Does it still pull you forward?",
                 "If it needs updating, note it down — don't edit mid-session",
                 "Reconnect with your deeper why before reviewing the areas below"
