@@ -99,7 +99,7 @@ struct HomeView: View {
                 HStack {
                     Spacer()
                     Label(
-                        "Start \(QuarterRecord.currentQuarterLabel()) Review",
+                        "Start Quarterly Review",
                         systemImage: "play.circle.fill"
                     )
                     .font(.headline)
