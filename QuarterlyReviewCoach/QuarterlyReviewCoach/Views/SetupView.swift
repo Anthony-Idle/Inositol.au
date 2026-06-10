@@ -11,6 +11,7 @@ struct SetupView: View {
 
     @State private var authStatus: UNAuthorizationStatus = .notDetermined
     @State private var showDeniedAlert = false
+    @State private var showingAreasConfig = false
 
     private var reminderTime: Binding<Date> {
         Binding(
@@ -64,6 +65,9 @@ struct SetupView: View {
                                     ? .secondary : .orange
                             )
                     }
+                } footer: {
+                    Button("Edit area names") { showingAreasConfig = true }
+                        .font(.footnote)
                 }
 
                 reminderSection
@@ -98,6 +102,9 @@ struct SetupView: View {
             } message: {
                 Text("Enable notifications in Settings to receive your quarterly review reminder.")
             }
+            .sheet(isPresented: $showingAreasConfig) {
+                AreasConfigView(vm: vm)
+            }
         }
         .navigationViewStyle(.stack)
     }
@@ -128,7 +135,6 @@ struct SetupView: View {
                         Text(monthName(month)).tag(month)
                     }
                 }
-
                 DatePicker("Time", selection: reminderTime, displayedComponents: .hourAndMinute)
             }
         } header: {
@@ -228,12 +234,10 @@ struct StepAllocationRow: View {
     var body: some View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 2) {
-                if let sub = step.subSection {
-                    Text(sub.uppercased())
-                        .font(.caption.bold())
-                        .foregroundColor(.accentColor)
-                        .tracking(0.5)
-                }
+                Text(step.phase.altitude)
+                    .font(.caption.bold())
+                    .foregroundColor(.accentColor)
+                    .tracking(0.3)
                 Text(step.name)
                     .font(.subheadline)
                 Text("\(minutes) min")

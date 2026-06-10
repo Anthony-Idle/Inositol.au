@@ -56,10 +56,16 @@ struct CompletionView: View {
                 value: vm.currentRecord.formattedElapsed
             )
             statRow(
-                icon: "list.bullet.clipboard.fill",
-                label: "Steps completed",
-                value: "\(vm.currentRecord.stepsCompleted)"
+                icon: "chart.bar.fill",
+                label: "Average achievement",
+                value: "\(vm.currentRecord.averageAchievement)%"
             )
+
+            if !vm.currentRecord.areaNames.isEmpty {
+                Divider()
+                achievementBars
+            }
+
             if !vm.currentRecord.oneThingForSuccess.isEmpty {
                 Divider()
                 statRow(
@@ -73,6 +79,44 @@ struct CompletionView: View {
         .background(Color(.secondarySystemGroupedBackground))
         .cornerRadius(16)
         .padding(.horizontal)
+    }
+
+    private var achievementBars: some View {
+        VStack(spacing: 6) {
+            ForEach(vm.currentRecord.areaNames.indices, id: \.self) { i in
+                let name = vm.currentRecord.areaNames[i]
+                let rate = i < vm.currentRecord.achievementRates.count
+                    ? vm.currentRecord.achievementRates[i] : 0
+                HStack(spacing: 8) {
+                    Text(name)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .frame(width: 90, alignment: .leading)
+                    GeometryReader { geo in
+                        ZStack(alignment: .leading) {
+                            RoundedRectangle(cornerRadius: 3)
+                                .fill(Color(.systemGray5))
+                            RoundedRectangle(cornerRadius: 3)
+                                .fill(barColor(rate))
+                                .frame(width: geo.size.width * CGFloat(rate) / 100)
+                        }
+                    }
+                    .frame(height: 6)
+                    Text("\(rate)%")
+                        .font(.caption.monospacedDigit())
+                        .foregroundColor(.secondary)
+                        .frame(width: 36, alignment: .trailing)
+                }
+            }
+        }
+    }
+
+    private func barColor(_ rate: Int) -> Color {
+        switch rate {
+        case 0..<40:  return .red
+        case 40..<70: return .orange
+        default:      return .accentColor
+        }
     }
 
     // MARK: - Next review picker

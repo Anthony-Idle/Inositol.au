@@ -7,13 +7,10 @@ struct QuarterRecord: Identifiable, Codable {
     var completedDate: Date?
     var sessionElapsedSeconds: Int = 0
     var stepsCompleted: Int = 0
-    var biggestWin: String = ""
-    var mainAvoided: String = ""
-    var mostCostly: String = ""
-    var carryingForward: String = ""
+    var areaNames: [String] = AreaSettings.defaultNames
+    var achievementRates: [Int] = Array(repeating: 50, count: 8)
+    var causeAnalysis: String = ""
     var oneThingForSuccess: String = ""
-    var focusGoals: [String] = Array(repeating: "", count: 5)
-    var stopDoingItems: [String] = Array(repeating: "", count: 3)
     var nextReviewDate: Date?
 
     init(quarterLabel: String) {
@@ -22,9 +19,12 @@ struct QuarterRecord: Identifiable, Codable {
     }
 
     var formattedElapsed: String {
-        let m = sessionElapsedSeconds / 60
-        let s = sessionElapsedSeconds % 60
-        return String(format: "%02d:%02d", m, s)
+        String(format: "%02d:%02d", sessionElapsedSeconds / 60, sessionElapsedSeconds % 60)
+    }
+
+    var averageAchievement: Int {
+        guard !achievementRates.isEmpty else { return 0 }
+        return achievementRates.reduce(0, +) / achievementRates.count
     }
 
     static func currentQuarterLabel() -> String {

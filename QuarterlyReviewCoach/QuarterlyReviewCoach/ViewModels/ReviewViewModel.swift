@@ -10,9 +10,12 @@ class ReviewViewModel: ObservableObject {
     // MARK: - Navigation
     @Published var screen: AppScreen = .home
 
+    // MARK: - Areas
+    @Published var areaNames: [String] = AreaSettings.load()
+
     // MARK: - Setup
-    @Published var steps: [ReviewStep] = ReviewStep.defaultSteps
-    @Published var totalMinutes: Int = 150 {
+    @Published var steps: [ReviewStep] = []
+    @Published var totalMinutes: Int = 120 {
         didSet { redistributeTime() }
     }
 
@@ -32,6 +35,7 @@ class ReviewViewModel: ObservableObject {
     private let storageKey = "quarterlyReviewRecords"
 
     init() {
+        steps = ReviewStep.generateSteps(areaNames: areaNames)
         redistributeTime()
         loadRecords()
     }
@@ -73,13 +77,25 @@ class ReviewViewModel: ObservableObject {
         return (currentPhaseSteps.firstIndex(where: { $0.id == current.id }) ?? 0) + 1
     }
 
-    // MARK: - Setup
+    // MARK: - Area configuration
+
+    func saveAreaNames() {
+        AreaSettings.save(areaNames)
+        let oldDurations = steps.map { $0.durationSeconds }
+        steps = ReviewStep.generateSteps(areaNames: areaNames)
+        for i in steps.indices where i < oldDurations.count {
+            steps[i].durationSeconds = oldDurations[i]
+        }
+    }
+
+    // MARK: - Time setup
 
     func redistributeTime() {
         let total = totalMinutes * 60
-        let defaultTotal = ReviewStep.defaultTotalSeconds
+        let defaultTotal = steps.reduce(0) { $0 + $1.defaultDurationSeconds }
+        guard defaultTotal > 0 else { return }
         for i in steps.indices {
-            let fraction = Double(ReviewStep.defaultSteps[i].durationSeconds) / Double(defaultTotal)
+            let fraction = Double(steps[i].defaultDurationSeconds) / Double(defaultTotal)
             steps[i].durationSeconds = max(30, Int(fraction * Double(total)))
         }
     }
@@ -90,10 +106,11 @@ class ReviewViewModel: ObservableObject {
         steps[index].durationSeconds = max(1, minutes) * 60
     }
 
-    // MARK: - Navigation
+    // MARK: - Flow
 
     func startSetup() {
         currentRecord = QuarterRecord(quarterLabel: QuarterRecord.currentQuarterLabel())
+        currentRecord.areaNames = areaNames
         screen = .setup
     }
 
@@ -128,6 +145,7 @@ class ReviewViewModel: ObservableObject {
         stopTimer()
         currentRecord.sessionElapsedSeconds = sessionElapsedSeconds
         currentRecord.stepsCompleted = steps.count
+        currentRecord.achievementRates = Array(repeating: 50, count: areaNames.count)
         screen = .debrief
     }
 
@@ -156,12 +174,12 @@ class ReviewViewModel: ObservableObject {
         isRunning = false
         isPaused = false
         stepExpired = false
-        steps = ReviewStep.defaultSteps
+        steps = ReviewStep.generateSteps(areaNames: areaNames)
         redistributeTime()
         currentRecord = QuarterRecord(quarterLabel: QuarterRecord.currentQuarterLabel())
     }
 
-    // MARK: - Private
+    // MARK: - Timer
 
     private func beginStep() {
         guard currentStepIndex < steps.count else { finishTimer(); return }

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var vm: ReviewViewModel
+    @State private var showingAreasConfig = false
 
     var body: some View {
         NavigationView {
@@ -15,13 +16,20 @@ struct HomeView: View {
             .navigationTitle("Quarterly Review")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("New Review") { vm.startSetup() }
+                    Button {
+                        showingAreasConfig = true
+                    } label: {
+                        Image(systemName: "square.grid.3x3")
+                    }
                 }
             }
         }
         .navigationViewStyle(.stack)
         .safeAreaInset(edge: .bottom) {
             startBanner
+        }
+        .sheet(isPresented: $showingAreasConfig) {
+            AreasConfigView(vm: vm)
         }
     }
 
@@ -36,7 +44,7 @@ struct HomeView: View {
             VStack(spacing: 8) {
                 Text("No Reviews Yet")
                     .font(.title2.bold())
-                Text("Start your first quarterly review to build a habit of intentional reflection.")
+                Text("Start your first quarterly review.\nTap the grid icon above to name your 8 areas first.")
                     .font(.body)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -58,15 +66,15 @@ struct HomeView: View {
     }
 
     private func recordRow(_ record: QuarterRecord) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 6) {
             HStack {
                 Text(record.quarterLabel)
                     .font(.headline)
                 Spacer()
                 if record.completedDate != nil {
-                    Label("Complete", systemImage: "checkmark.circle.fill")
-                        .font(.caption)
-                        .foregroundColor(.green)
+                    Text("\(record.averageAchievement)% avg")
+                        .font(.caption.monospacedDigit())
+                        .foregroundColor(.accentColor)
                 }
             }
             Text((record.completedDate ?? record.startDate).formatted(date: .abbreviated, time: .omitted))

@@ -45,7 +45,6 @@ struct ReviewView: View {
                     .font(.subheadline.monospacedDigit())
                     .foregroundColor(.secondary)
             }
-
             ProgressView(value: vm.overallProgress)
                 .tint(.accentColor)
         }
@@ -61,7 +60,7 @@ struct ReviewView: View {
         if let step = vm.currentStep {
             HStack {
                 Label(
-                    "Phase \(step.phase.number) — \(step.phase.rawValue)",
+                    "\(step.phase.altitude) — \(step.phase.rawValue)",
                     systemImage: step.phase.icon
                 )
                 .font(.subheadline.bold())
@@ -120,12 +119,10 @@ struct ReviewView: View {
 
     private func stepCard(step: ReviewStep) -> some View {
         VStack(spacing: 4) {
-            if let sub = step.subSection {
-                Text(sub.uppercased())
-                    .font(.caption.bold())
-                    .foregroundColor(.accentColor)
-                    .tracking(1)
-            }
+            Text(step.phase.altitude.uppercased())
+                .font(.caption.bold())
+                .foregroundColor(.accentColor)
+                .tracking(1)
 
             Text(step.name)
                 .font(.title2.bold())
@@ -220,9 +217,7 @@ struct ReviewView: View {
 
             if vm.stepExpired {
                 Button(
-                    vm.currentStepIndex == vm.steps.count - 1
-                        ? "Begin Debrief →"
-                        : "Next Step →"
+                    vm.currentStepIndex == vm.steps.count - 1 ? "Begin Debrief →" : "Next Step →"
                 ) {
                     vm.nextStep()
                 }

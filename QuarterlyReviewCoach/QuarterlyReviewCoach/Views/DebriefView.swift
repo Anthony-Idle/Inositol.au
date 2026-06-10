@@ -6,9 +6,9 @@ struct DebriefView: View {
     var body: some View {
         NavigationView {
             Form {
-                debriefSection
-                goalsSection
-                stopDoingSection
+                achievementSection
+                causeAnalysisSection
+                oneThingSection
                 completeSection
             }
             .navigationTitle("Debrief")
@@ -16,96 +16,110 @@ struct DebriefView: View {
         .navigationViewStyle(.stack)
     }
 
-    // MARK: - Debrief questions
+    // MARK: - Achievement rates
 
-    private var debriefSection: some View {
+    private var achievementSection: some View {
         Section {
-            debriefField(
-                label: "What was this quarter's biggest win?",
-                placeholder: "The thing you're most proud of...",
-                text: Binding(
-                    get: { vm.currentRecord.biggestWin },
-                    set: { vm.currentRecord.biggestWin = $0 }
-                )
-            )
-            debriefField(
-                label: "What was the main thing you avoided?",
-                placeholder: "Be honest — this is where the growth is...",
-                text: Binding(
-                    get: { vm.currentRecord.mainAvoided },
-                    set: { vm.currentRecord.mainAvoided = $0 }
-                )
-            )
-            debriefField(
-                label: "What cost you the most time/energy with least return?",
-                placeholder: "The thing you'd do differently...",
-                text: Binding(
-                    get: { vm.currentRecord.mostCostly },
-                    set: { vm.currentRecord.mostCostly = $0 }
-                )
-            )
-            debriefField(
-                label: "What are you carrying into next quarter that should have been killed?",
-                placeholder: "The zombie project or habit that needs to end...",
-                text: Binding(
-                    get: { vm.currentRecord.carryingForward },
-                    set: { vm.currentRecord.carryingForward = $0 }
-                )
-            )
-            debriefField(
-                label: "The one thing that would make next quarter a success:",
-                placeholder: "One specific, concrete outcome...",
-                text: Binding(
-                    get: { vm.currentRecord.oneThingForSuccess },
-                    set: { vm.currentRecord.oneThingForSuccess = $0 }
-                )
-            )
-        } header: {
-            Label("Quarter Debrief", systemImage: "text.quote")
-        }
-    }
-
-    // MARK: - Focus goals
-
-    private var goalsSection: some View {
-        Section {
-            ForEach(0..<5, id: \.self) { i in
-                HStack {
-                    Text("\(i + 1).")
-                        .font(.subheadline.monospacedDigit())
-                        .foregroundColor(.secondary)
-                        .frame(width: 20)
-                    TextField("Goal \(i + 1)", text: goalBinding(i))
-                        .font(.body)
-                }
+            ForEach(vm.currentRecord.areaNames.indices, id: \.self) { i in
+                achievementRow(index: i)
             }
         } header: {
-            Label("Next Quarter Focus Goals", systemImage: "target")
+            Label("Achievement Rate by Area", systemImage: "chart.bar")
         } footer: {
-            Text("Write concrete outcomes, not activities.")
+            Text("Score each area 0–100% for this quarter. Be honest — this becomes your baseline.")
         }
     }
 
-    // MARK: - Stop doing
+    private func achievementRow(index: Int) -> some View {
+        let areaName = index < vm.currentRecord.areaNames.count
+            ? vm.currentRecord.areaNames[index] : "Area \(index + 1)"
 
-    private var stopDoingSection: some View {
-        Section {
-            ForEach(0..<3, id: \.self) { i in
-                HStack {
-                    Image(systemName: "xmark.circle")
-                        .foregroundColor(.red.opacity(0.6))
-                    TextField("Stop doing this...", text: stopBinding(i))
-                        .font(.body)
+        let rate = Binding<Double>(
+            get: {
+                Double(index < vm.currentRecord.achievementRates.count
+                    ? vm.currentRecord.achievementRates[index] : 50)
+            },
+            set: {
+                if index < vm.currentRecord.achievementRates.count {
+                    vm.currentRecord.achievementRates[index] = Int($0)
                 }
             }
-        } header: {
-            Label("Stop Doing List", systemImage: "slash.circle")
-        } footer: {
-            Text("At least 1–2 things to cut or pause this quarter.")
+        )
+
+        return VStack(alignment: .leading, spacing: 6) {
+            HStack {
+                Text(areaName)
+                    .font(.subheadline.bold())
+                Spacer()
+                Text("\(Int(rate.wrappedValue))%")
+                    .font(.subheadline.monospacedDigit().bold())
+                    .foregroundColor(rateColor(Int(rate.wrappedValue)))
+            }
+            Slider(value: rate, in: 0...100, step: 5)
+                .tint(rateColor(Int(rate.wrappedValue)))
+        }
+        .padding(.vertical, 4)
+    }
+
+    private func rateColor(_ rate: Int) -> Color {
+        switch rate {
+        case 0..<40:   return .red
+        case 40..<70:  return .orange
+        default:       return .accentColor
         }
     }
 
-    // MARK: - Complete button
+    // MARK: - Cause analysis
+
+    private var causeAnalysisSection: some View {
+        Section {
+            VStack(alignment: .leading, spacing: 6) {
+                Text("For your lowest-scoring areas, what were the root causes?")
+                    .font(.subheadline.bold())
+                TextField(
+                    "Environment, routines, wrong goal, competing priorities...",
+                    text: Binding(
+                        get: { vm.currentRecord.causeAnalysis },
+                        set: { vm.currentRecord.causeAnalysis = $0 }
+                    ),
+                    axis: .vertical
+                )
+                .font(.body)
+                .lineLimit(4, reservesSpace: true)
+            }
+            .padding(.vertical, 4)
+        } header: {
+            Label("Cause Analysis", systemImage: "magnifyingglass")
+        } footer: {
+            Text("Root causes, not symptoms. \"Didn't have time\" is a symptom.")
+        }
+    }
+
+    // MARK: - One thing
+
+    private var oneThingSection: some View {
+        Section {
+            VStack(alignment: .leading, spacing: 6) {
+                Text("The one thing that would make next quarter a success:")
+                    .font(.subheadline.bold())
+                TextField(
+                    "One specific, concrete outcome...",
+                    text: Binding(
+                        get: { vm.currentRecord.oneThingForSuccess },
+                        set: { vm.currentRecord.oneThingForSuccess = $0 }
+                    ),
+                    axis: .vertical
+                )
+                .font(.body)
+                .lineLimit(3, reservesSpace: true)
+            }
+            .padding(.vertical, 4)
+        } header: {
+            Label("Next Quarter", systemImage: "target")
+        }
+    }
+
+    // MARK: - Complete
 
     private var completeSection: some View {
         Section {
@@ -120,46 +134,5 @@ struct DebriefView: View {
             .foregroundColor(.white)
             .listRowBackground(Color.accentColor)
         }
-    }
-
-    // MARK: - Helpers
-
-    private func debriefField(label: String, placeholder: String, text: Binding<String>) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(label)
-                .font(.subheadline.bold())
-            TextField(placeholder, text: text, axis: .vertical)
-                .font(.body)
-                .lineLimit(3, reservesSpace: true)
-        }
-        .padding(.vertical, 4)
-    }
-
-    private func goalBinding(_ index: Int) -> Binding<String> {
-        Binding(
-            get: {
-                index < vm.currentRecord.focusGoals.count
-                    ? vm.currentRecord.focusGoals[index] : ""
-            },
-            set: {
-                if index < vm.currentRecord.focusGoals.count {
-                    vm.currentRecord.focusGoals[index] = $0
-                }
-            }
-        )
-    }
-
-    private func stopBinding(_ index: Int) -> Binding<String> {
-        Binding(
-            get: {
-                index < vm.currentRecord.stopDoingItems.count
-                    ? vm.currentRecord.stopDoingItems[index] : ""
-            },
-            set: {
-                if index < vm.currentRecord.stopDoingItems.count {
-                    vm.currentRecord.stopDoingItems[index] = $0
-                }
-            }
-        )
     }
 }
