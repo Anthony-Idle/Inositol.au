@@ -10,6 +10,7 @@
 		BB000001000000000000001B /* QuarterlyReviewCoachApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000001A /* QuarterlyReviewCoachApp.swift */; };
 		BB00000100000000000000C1 /* AreaSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00000100000000000000C0 /* AreaSettings.swift */; };
 		BB00000100000000000000C3 /* AreasConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00000100000000000000C2 /* AreasConfigView.swift */; };
+		BB00000100000000000000D1 /* RadarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00000100000000000000D2 /* RadarChart.swift */; };
 		BB000001000000000000002B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000002A /* ContentView.swift */; };
 		BB000001000000000000003B /* ReviewStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000003A /* ReviewStep.swift */; };
 		BB000001000000000000004B /* QuarterRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000004A /* QuarterRecord.swift */; };
@@ -39,6 +40,7 @@
 		BB00000100000000000000F0 /* QuarterlyReviewCoach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuarterlyReviewCoach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB00000100000000000000C0 /* AreaSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaSettings.swift; sourceTree = "<group>"; };
 		BB00000100000000000000C2 /* AreasConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreasConfigView.swift; sourceTree = "<group>"; };
+		BB00000100000000000000D2 /* RadarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarChart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -78,6 +80,7 @@
 				BB00000100000000000000AA /* DebriefView.swift */,
 				BB00000100000000000000BA /* CompletionView.swift */,
 				BB00000100000000000000C2 /* AreasConfigView.swift */,
+				BB00000100000000000000D2 /* RadarChart.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				BB00000100000000000000BB /* CompletionView.swift in Sources */,
 				BB00000100000000000000C1 /* AreaSettings.swift in Sources */,
 				BB00000100000000000000C3 /* AreasConfigView.swift in Sources */,
+				BB00000100000000000000D1 /* RadarChart.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

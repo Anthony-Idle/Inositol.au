@@ -77,6 +77,11 @@ class ReviewViewModel: ObservableObject {
         return (currentPhaseSteps.firstIndex(where: { $0.id == current.id }) ?? 0) + 1
     }
 
+    var currentAreaIndex: Int? {
+        guard let step = currentStep, step.phase == .areas else { return nil }
+        return currentStepIndex - 1  // step 0 is Life Goal, area steps start at 1
+    }
+
     // MARK: - Area configuration
 
     func saveAreaNames() {
@@ -145,7 +150,6 @@ class ReviewViewModel: ObservableObject {
         stopTimer()
         currentRecord.sessionElapsedSeconds = sessionElapsedSeconds
         currentRecord.stepsCompleted = steps.count
-        currentRecord.achievementRates = Array(repeating: 50, count: areaNames.count)
         screen = .debrief
     }
 

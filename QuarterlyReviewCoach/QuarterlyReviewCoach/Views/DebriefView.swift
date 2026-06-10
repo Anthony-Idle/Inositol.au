@@ -6,7 +6,7 @@ struct DebriefView: View {
     var body: some View {
         NavigationView {
             Form {
-                achievementSection
+                radarSection
                 causeAnalysisSection
                 oneThingSection
                 completeSection
@@ -16,56 +16,21 @@ struct DebriefView: View {
         .navigationViewStyle(.stack)
     }
 
-    // MARK: - Achievement rates
+    // MARK: - Radar chart
 
-    private var achievementSection: some View {
+    private var radarSection: some View {
         Section {
-            ForEach(vm.currentRecord.areaNames.indices, id: \.self) { i in
-                achievementRow(index: i)
-            }
+            let values = vm.currentRecord.achievementRates.map { Double($0) }
+            let labels = vm.currentRecord.areaNames
+
+            RadarChart(values: values, labels: labels)
+                .frame(height: 320)
+                .padding(.vertical, 8)
         } header: {
-            Label("Achievement Rate by Area", systemImage: "chart.bar")
+            Label("Quarter Achievement", systemImage: "chart.xyaxis.line")
         } footer: {
-            Text("Score each area 0–100% for this quarter. Be honest — this becomes your baseline.")
-        }
-    }
-
-    private func achievementRow(index: Int) -> some View {
-        let areaName = index < vm.currentRecord.areaNames.count
-            ? vm.currentRecord.areaNames[index] : "Area \(index + 1)"
-
-        let rate = Binding<Double>(
-            get: {
-                Double(index < vm.currentRecord.achievementRates.count
-                    ? vm.currentRecord.achievementRates[index] : 50)
-            },
-            set: {
-                if index < vm.currentRecord.achievementRates.count {
-                    vm.currentRecord.achievementRates[index] = Int($0)
-                }
-            }
-        )
-
-        return VStack(alignment: .leading, spacing: 6) {
-            HStack {
-                Text(areaName)
-                    .font(.subheadline.bold())
-                Spacer()
-                Text("\(Int(rate.wrappedValue))%")
-                    .font(.subheadline.monospacedDigit().bold())
-                    .foregroundColor(rateColor(Int(rate.wrappedValue)))
-            }
-            Slider(value: rate, in: 0...100, step: 5)
-                .tint(rateColor(Int(rate.wrappedValue)))
-        }
-        .padding(.vertical, 4)
-    }
-
-    private func rateColor(_ rate: Int) -> Color {
-        switch rate {
-        case 0..<40:   return .red
-        case 40..<70:  return .orange
-        default:       return .accentColor
+            let avg = vm.currentRecord.averageAchievement
+            Text("Average achievement: \(avg)%")
         }
     }
 

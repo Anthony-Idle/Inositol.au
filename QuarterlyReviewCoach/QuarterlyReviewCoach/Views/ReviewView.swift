@@ -22,6 +22,10 @@ struct ReviewView: View {
                         instructionsCard(step: step)
                     }
 
+                    if let areaIndex = vm.currentAreaIndex {
+                        achievementCard(areaIndex: areaIndex)
+                    }
+
                     Spacer(minLength: 120)
                 }
                 .padding(.horizontal)
@@ -158,6 +162,59 @@ struct ReviewView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color(.secondarySystemGroupedBackground))
         .cornerRadius(12)
+    }
+
+    // MARK: - Achievement rate card
+
+    private func achievementCard(areaIndex: Int) -> some View {
+        let rate = Binding<Double>(
+            get: {
+                areaIndex < vm.currentRecord.achievementRates.count
+                    ? Double(vm.currentRecord.achievementRates[areaIndex]) : 50
+            },
+            set: {
+                if areaIndex < vm.currentRecord.achievementRates.count {
+                    vm.currentRecord.achievementRates[areaIndex] = Int($0)
+                }
+            }
+        )
+
+        return VStack(alignment: .leading, spacing: 10) {
+            Label("Achievement Rate", systemImage: "chart.bar")
+                .font(.subheadline.bold())
+                .foregroundColor(.accentColor)
+
+            HStack {
+                Text("How well did you perform in this area this quarter?")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                Spacer()
+                Text("\(Int(rate.wrappedValue))%")
+                    .font(.title3.bold().monospacedDigit())
+                    .foregroundColor(rateColor(Int(rate.wrappedValue)))
+            }
+
+            Slider(value: rate, in: 0...100, step: 5)
+                .tint(rateColor(Int(rate.wrappedValue)))
+
+            HStack {
+                Text("0%").font(.caption).foregroundColor(.secondary)
+                Spacer()
+                Text("100%").font(.caption).foregroundColor(.secondary)
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color(.secondarySystemGroupedBackground))
+        .cornerRadius(12)
+    }
+
+    private func rateColor(_ rate: Int) -> Color {
+        switch rate {
+        case 0..<40:  return .red
+        case 40..<70: return .orange
+        default:      return .accentColor
+        }
     }
 
     // MARK: - Bottom controls
