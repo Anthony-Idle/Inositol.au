@@ -12,11 +12,14 @@ class QuarterlyNotificationManager {
             }
     }
 
-    func scheduleYearlyReminder(month: Int, hour: Int, minute: Int) {
+    func scheduleYearlyReminder(month: Int, ordinal: Int, weekday: Int, hour: Int, minute: Int) {
         cancel()
+        let year = Calendar.current.component(.year, from: Date())
+        guard let day = dayOfMonth(ordinal: ordinal, weekday: weekday, month: month, year: year) else { return }
+
         var components = DateComponents()
         components.month = month
-        components.day = 1
+        components.day = day
         components.hour = hour
         components.minute = minute
 
@@ -39,5 +42,36 @@ class QuarterlyNotificationManager {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             DispatchQueue.main.async { completion(settings.authorizationStatus) }
         }
+    }
+
+    // MARK: - Date calculation
+
+    private func dayOfMonth(ordinal: Int, weekday: Int, month: Int, year: Int) -> Int? {
+        let calendar = Calendar.current
+        guard let firstOfMonth = calendar.date(from: DateComponents(year: year, month: month, day: 1)),
+              let range = calendar.range(of: .day, in: .month, for: firstOfMonth)
+        else { return nil }
+
+        let days = range.count
+
+        if ordinal == 5 {
+            // Last occurrence — scan backwards
+            for day in stride(from: days, through: 1, by: -1) {
+                if let date = calendar.date(from: DateComponents(year: year, month: month, day: day)),
+                   calendar.component(.weekday, from: date) == weekday {
+                    return day
+                }
+            }
+        } else {
+            var count = 0
+            for day in 1...days {
+                if let date = calendar.date(from: DateComponents(year: year, month: month, day: day)),
+                   calendar.component(.weekday, from: date) == weekday {
+                    count += 1
+                    if count == ordinal { return day }
+                }
+            }
+        }
+        return nil
     }
 }

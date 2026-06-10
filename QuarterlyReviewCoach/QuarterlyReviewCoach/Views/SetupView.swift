@@ -4,10 +4,12 @@ import UserNotifications
 struct SetupView: View {
     @ObservedObject var vm: ReviewViewModel
 
-    @AppStorage("qrReminderEnabled") private var reminderEnabled = false
-    @AppStorage("qrReminderMonth")   private var reminderMonth   = 1
-    @AppStorage("qrReminderHour")    private var reminderHour    = 10
-    @AppStorage("qrReminderMinute")  private var reminderMinute  = 0
+    @AppStorage("qrReminderEnabled")  private var reminderEnabled  = false
+    @AppStorage("qrReminderMonth")    private var reminderMonth    = 1
+    @AppStorage("qrReminderOrdinal")  private var reminderOrdinal  = 1  // 1=First … 4=Fourth, 5=Last
+    @AppStorage("qrReminderWeekday")  private var reminderWeekday  = 7  // 1=Sun … 7=Sat
+    @AppStorage("qrReminderHour")     private var reminderHour     = 10
+    @AppStorage("qrReminderMinute")   private var reminderMinute   = 0
 
     @State private var authStatus: UNAuthorizationStatus = .notDetermined
     @State private var showDeniedAlert = false
@@ -135,13 +137,32 @@ struct SetupView: View {
                         Text(monthName(month)).tag(month)
                     }
                 }
+
+                Picker("Week", selection: Binding(
+                    get: { reminderOrdinal },
+                    set: { reminderOrdinal = $0; reschedule() }
+                )) {
+                    ForEach([1, 2, 3, 4, 5], id: \.self) { ord in
+                        Text(ordinalName(ord)).tag(ord)
+                    }
+                }
+
+                Picker("Day", selection: Binding(
+                    get: { reminderWeekday },
+                    set: { reminderWeekday = $0; reschedule() }
+                )) {
+                    ForEach(1...7, id: \.self) { wd in
+                        Text(weekdayName(wd)).tag(wd)
+                    }
+                }
+
                 DatePicker("Time", selection: reminderTime, displayedComponents: .hourAndMinute)
             }
         } header: {
             Text("Reminder")
         } footer: {
             if reminderEnabled && authStatus == .authorized {
-                Text("You'll be reminded each \(monthName(reminderMonth)) to do your quarterly review.")
+                Text("You'll be reminded on the \(ordinalName(reminderOrdinal).lowercased()) \(weekdayName(reminderWeekday)) of \(monthName(reminderMonth)) each year.")
             }
         }
     }
@@ -205,6 +226,8 @@ struct SetupView: View {
     private func reschedule() {
         QuarterlyNotificationManager.shared.scheduleYearlyReminder(
             month: reminderMonth,
+            ordinal: reminderOrdinal,
+            weekday: reminderWeekday,
             hour: reminderHour,
             minute: reminderMinute
         )
@@ -220,6 +243,22 @@ struct SetupView: View {
         let df = DateFormatter()
         df.dateFormat = "MMMM"
         return Calendar.current.date(from: c).map { df.string(from: $0) } ?? "\(month)"
+    }
+
+    private func ordinalName(_ ordinal: Int) -> String {
+        ["First", "Second", "Third", "Fourth", "Last"][safe: ordinal - 1] ?? "\(ordinal)"
+    }
+
+    private func weekdayName(_ weekday: Int) -> String {
+        ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][safe: weekday - 1] ?? "\(weekday)"
+    }
+}
+
+// MARK: - Safe array subscript
+
+private extension Array {
+    subscript(safe index: Int) -> Element? {
+        indices.contains(index) ? self[index] : nil
     }
 }
 
